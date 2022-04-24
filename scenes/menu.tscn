@@ -1,0 +1,88 @@
+[gd_scene load_steps=13 format=2]
+
+[ext_resource path="res://themes/theme.tres" type="Theme" id=1]
+[ext_resource path="res://scenes/menu.gd" type="Script" id=2]
+[ext_resource path="res://backgrounds/black.png" type="Texture" id=3]
+[ext_resource path="res://sounds/classic/beat2.wav" type="AudioStream" id=4]
+[ext_resource path="res://sounds/classic/beat1.wav" type="AudioStream" id=5]
+
+[sub_resource type="StyleBoxEmpty" id=1]
+
+[sub_resource type="StyleBoxEmpty" id=2]
+
+[sub_resource type="StyleBoxEmpty" id=3]
+
+[sub_resource type="StyleBoxEmpty" id=4]
+
+[sub_resource type="StyleBoxEmpty" id=5]
+
+[sub_resource type="InputEventKey" id=6]
+pressed = true
+scancode = 32
+
+[sub_resource type="ShortCut" id=7]
+shortcut = SubResource( 6 )
+
+[node name="menu" type="Node2D"]
+script = ExtResource( 2 )
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Panel" type="Panel" parent="CanvasLayer"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="Space_Black" type="TextureRect" parent="CanvasLayer/Panel"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -40.0
+margin_top = -40.0
+margin_right = 1880.0
+margin_bottom = 1040.0
+texture = ExtResource( 3 )
+stretch_mode = 2
+
+[node name="play" type="Button" parent="CanvasLayer/Panel"]
+pause_mode = 2
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -40.0
+margin_top = -20.0
+margin_right = 40.0
+margin_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource( 1 )
+custom_colors/font_color_focus = Color( 0.835294, 0.835294, 0.835294, 1 )
+custom_colors/font_color = Color( 0.756863, 0.756863, 0.756863, 1 )
+custom_colors/font_color_hover = Color( 0.835294, 0.835294, 0.835294, 1 )
+custom_colors/font_color_pressed = Color( 1, 1, 1, 1 )
+custom_styles/hover = SubResource( 1 )
+custom_styles/pressed = SubResource( 2 )
+custom_styles/focus = SubResource( 3 )
+custom_styles/disabled = SubResource( 4 )
+custom_styles/normal = SubResource( 5 )
+shortcut = SubResource( 7 )
+text = "Play"
+flat = true
+
+[node name="asteroid_field" type="Node2D" parent="CanvasLayer"]
+
+[node name="play_timer" type="Timer" parent="."]
+wait_time = 0.25
+one_shot = true
+
+[node name="sfx" type="Node2D" parent="."]
+
+[node name="button_sound" type="AudioStreamPlayer" parent="sfx"]
+stream = ExtResource( 4 )
+volume_db = -5.0
+
+[node name="button_d_sound" type="AudioStreamPlayer" parent="sfx"]
+stream = ExtResource( 5 )
+volume_db = -5.0
+
+[connection signal="button_down" from="CanvasLayer/Panel/play" to="." method="_on_play_button_down"]
+[connection signal="timeout" from="play_timer" to="." method="_on_play_timer_timeout"]
