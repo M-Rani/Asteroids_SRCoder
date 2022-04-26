@@ -16,13 +16,13 @@ script = ExtResource( 2 )
 
 [node name="shield" type="Node2D" parent="."]
 
-[node name="shield_sprite2" type="Sprite" parent="shield"]
+[node name="shield_bottom_part" type="Sprite" parent="shield"]
 position = Vector2( -7.5, 16 )
 rotation = -3.14159
 texture = ExtResource( 7 )
 offset = Vector2( -1.97, 0.762 )
 
-[node name="shield_sprite" type="Sprite" parent="shield"]
+[node name="shield_upper_part" type="Sprite" parent="shield"]
 position = Vector2( -2.5, -16 )
 texture = ExtResource( 7 )
 offset = Vector2( -1.97, 0.762 )
@@ -44,7 +44,7 @@ scale = Vector2( 0.95, 0.95 )
 polygon = PoolVector2Array( 4, -37, 6, -30, 9, -24, 12.9, -18.5, 48, 22, 48, 28, 41, 28, 24, 27.4, 13, 37, -14, 37, -22, 28, -37, 28, -45, 28, -49, 26, -49, 22, -12, -21, -9, -25, -7, -30, -4, -37 )
 
 [node name="game_over_timer" type="Timer" parent="."]
-wait_time = 2.0
+wait_time = 5.0
 one_shot = true
 
 [node name="invincibilty_timer" type="Timer" parent="."]

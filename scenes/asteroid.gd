@@ -3,7 +3,7 @@ class_name Asteroid
 
 var velocity = Vector2.ZERO
 var screen_size = OS.get_window_size()
-var escape_size = 50
+var escape_size = 45
 
 var x_movement
 var y_movement
@@ -18,7 +18,7 @@ func _ready():
 	x_movement = rand_range(-50, 50)
 	y_movement = rand_range(-50, 50)
 	persistent_rotation = rand_range(-1,1)
-	velocity = Vector2(x_movement*2,y_movement)
+	velocity = Vector2(x_movement*[1,2][randi() % 2],y_movement*[1,2][randi() % 2])
 
 func _process(delta):
 	# Apply random values every frame
@@ -43,6 +43,6 @@ func wrap():
 
 func _on_asteroid_area_entered(area):
 	if area is Bullet:
-		emit_signal("asteroid_destroyed")
+		emit_signal("asteroid_destroyed", global_position)
 		area.queue_free()
 		queue_free()

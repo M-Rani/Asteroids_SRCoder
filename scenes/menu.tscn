@@ -71,7 +71,7 @@ flat = true
 [node name="asteroid_field" type="Node2D" parent="CanvasLayer"]
 
 [node name="play_timer" type="Timer" parent="."]
-wait_time = 0.25
+wait_time = 0.3
 one_shot = true
 
 [node name="sfx" type="Node2D" parent="."]

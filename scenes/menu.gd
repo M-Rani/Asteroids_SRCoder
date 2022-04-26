@@ -10,6 +10,7 @@ var shook = 0
 export (float) var strength = 0.15
 export (int) var num_asteroids = 5
 onready var play_btn_pos = $CanvasLayer/Panel/play.rect_position
+onready var screen_size = OS.get_window_size()
 onready var asteroid = preload("res://scenes/asteroid.tscn")
 
 func shake(shake_strength:float = 1.0):
@@ -35,6 +36,11 @@ func _ready():
 		$CanvasLayer/asteroid_field.add_child(new_asteroid)
 
 func _process(delta):
+	# Readjust play button to window size
+#	screen_size = OS.get_window_size()
+#	play_btn_pos = screen_size / 2
+
+	# Trigger event if mouse hover over button
 	if $CanvasLayer/Panel/play.is_hovered():
 		if shook != 1:
 			shake()
@@ -43,6 +49,7 @@ func _process(delta):
 	else:
 		shook = 0
 
+	# Shake
 	t += delta
 	magnitude =  lerp(magnitude, 0, delta * 15)
 	$CanvasLayer.offset.x = sin(t*frequency+x_start) * magnitude * strength
